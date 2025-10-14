@@ -1,0 +1,19 @@
+/* TraversalArrow component styles */
+
+.traversalArrow { display: none; }
+
+.traversalArrow::before { content: ''; }
+
+@keyframes moveToNode {}
+
+/* Pulse animation for emphasis */
+.traversalArrow.pulse {
+  animation: moveToNode 1s ease-in-out, pulse 0.6s ease-in-out infinite;
+}
+
+@keyframes pulse {}
+
+/* Responsive design */
+@media (max-width: 768px) { .traversalArrow { display: none; } }
+
+@media (max-width: 480px) { .traversalArrow { display: none; } }

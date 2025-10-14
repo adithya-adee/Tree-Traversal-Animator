@@ -1,0 +1,214 @@
+/* StatusBar component styles */
+
+.statusBar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: sticky;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.statusBar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 12px 12px 0 0;
+}
+
+.statusContent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statusIcon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.statusDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.8);
+  }
+}
+
+.statusMessage {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.4;
+  flex: 1;
+  animation: messageSlideIn 0.3s ease-out;
+}
+
+/* Larger, bottom-stuck variant */
+.large {
+  padding: 1.25rem 1.75rem;
+  height: 110px; /* taller */
+  display: flex;
+  align-items: flex-start;
+}
+
+.large .statusMessage {
+  font-size: 1.15rem;
+}
+
+/* Multiline list rendering */
+.messageList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.messageItem {
+  background: rgba(102, 126, 234, 0.08);
+  border: 1px solid rgba(102, 126, 234, 0.25);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+.clearBtn {
+  margin-left: auto;
+  padding: 8px 12px;
+  background: #e9e9f7;
+  border: 1px solid #c6c6f0;
+  color: #333;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.clearBtn:hover {
+  background: #dedeff;
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Status states */
+.statusBar.success .statusDot {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.statusBar.warning .statusDot {
+  background: linear-gradient(135deg, #FF9800, #F57C00);
+  box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+}
+
+.statusBar.error .statusDot {
+  background: linear-gradient(135deg, #F44336, #d32f2f);
+  box-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
+}
+
+.statusBar.info .statusDot {
+  background: linear-gradient(135deg, #2196F3, #1976D2);
+  box-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .statusBar {
+    padding: 0.75rem 1rem;
+  }
+  
+  .statusContent {
+    gap: 0.75rem;
+  }
+  
+  .statusIcon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .statusDot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .statusMessage {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .statusBar {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .statusContent {
+    gap: 0.5rem;
+  }
+  
+  .statusIcon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .statusDot {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .statusMessage {
+    font-size: 0.8rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .statusBar {
+    background: white;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .statusBar::before {
+    background: #333;
+  }
+  
+  .statusDot {
+    background: #333;
+    box-shadow: none;
+    animation: none;
+  }
+  
+  .statusMessage {
+    color: #333;
+  }
+}

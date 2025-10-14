@@ -1,0 +1,254 @@
+/* VisualizationCanvas component styles */
+
+.canvasContainer {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.canvas {
+  position: relative;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 100%;
+}
+
+/* Bottom dock for status bar to span full canvas width */
+.statusDock {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 8px 12px;
+}
+
+.emptyState {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #666;
+  z-index: 1;
+}
+
+.emptyStateIcon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.6;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.emptyStateTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.emptyStateMessage {
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* Canvas grid pattern (optional) */
+.canvas::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(102, 126, 234, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(102, 126, 234, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .canvasContainer {
+    padding: 1rem;
+  }
+  
+  .canvas {
+    min-width: 100%;
+    min-height: 400px;
+  }
+  
+  .emptyStateIcon {
+    font-size: 3rem;
+  }
+  
+  .emptyStateTitle {
+    font-size: 1.25rem;
+  }
+  
+  .emptyStateMessage {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .canvasContainer {
+    padding: 0.5rem;
+  }
+  
+  .canvas {
+    min-height: 300px;
+  }
+  
+  .emptyStateIcon {
+    font-size: 2.5rem;
+  }
+  
+  .emptyStateTitle {
+    font-size: 1.1rem;
+  }
+  
+  .emptyStateMessage {
+    font-size: 0.8rem;
+  }
+}
+
+/* Animation states */
+.canvas.animating {
+  pointer-events: none;
+}
+
+.canvas.animating * {
+  transition: all 0.3s ease;
+}
+
+/* Loading state */
+.canvas.loading {
+  position: relative;
+}
+
+.canvas.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* Current value display */
+.currentValueDisplay {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(102, 126, 234, 0.95);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  animation: slideInFromRight 0.5s ease-out;
+}
+
+.valueLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.valueNumber {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Arrow animation for traversals */
+.traversalArrow {
+  display: none;
+}
+
+.traversalArrow::before {
+  content: '';
+}
+
+@keyframes moveToNode {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Print styles */
+@media print {
+  .canvasContainer {
+    background: white;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .canvas {
+    background: white;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .emptyState {
+    color: #333;
+  }
+  
+  .currentValueDisplay {
+    display: none;
+  }
+}

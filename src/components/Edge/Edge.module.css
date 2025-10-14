@@ -1,0 +1,125 @@
+/* Edge component styles */
+
+.edge {
+  position: absolute;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 2px;
+  z-index: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.edge::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  background: linear-gradient(90deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.edge:hover::before {
+  opacity: 1;
+}
+
+/* Edge types */
+.defaultEdge {
+  background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.leftEdge {
+  background: linear-gradient(90deg, #4CAF50, #45a049);
+}
+
+.rightEdge {
+  background: linear-gradient(90deg, #2196F3, #1976D2);
+}
+
+/* Edge animations */
+.edge.animating {
+  animation: edgeFlow 1s ease-in-out infinite;
+}
+
+@keyframes edgeFlow {
+  0%, 100% {
+    background: linear-gradient(90deg, #667eea, #764ba2);
+  }
+  50% {
+    background: linear-gradient(90deg, #764ba2, #667eea);
+  }
+}
+
+/* Edge highlight states */
+.edge.highlighted {
+  background: linear-gradient(90deg, #FF9800, #F57C00);
+  box-shadow: 0 0 10px rgba(255, 152, 0, 0.6);
+  animation: edgeGlow 1s ease-in-out infinite;
+}
+
+@keyframes edgeGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 152, 0, 0.9);
+  }
+}
+
+.edge.active {
+  background: linear-gradient(90deg, #E91E63, #C2185B);
+  box-shadow: 0 0 15px rgba(233, 30, 99, 0.7);
+  animation: edgePulse 0.8s ease-in-out infinite;
+}
+
+@keyframes edgePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Edge hover effects */
+.edge:hover {
+  height: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .edge {
+    height: 2px;
+  }
+  
+  .edge:hover {
+    height: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .edge {
+    height: 2px;
+  }
+  
+  .edge:hover {
+    height: 2px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .edge {
+    background: #333;
+    box-shadow: none;
+  }
+  
+  .edge::before {
+    display: none;
+  }
+}
