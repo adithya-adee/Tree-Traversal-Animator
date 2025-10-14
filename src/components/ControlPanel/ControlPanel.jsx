@@ -84,12 +84,13 @@ const ControlPanel = ({
             <input
               type="number"
               className={styles.input}
-              placeholder="Value to insert"
+              placeholder="Enter number (-999 to 999)"
               value={insertValue}
               onChange={(e) => setInsertValue(e.target.value)}
               disabled={isAnimating}
               min="-999"
               max="999"
+              title="Please enter a number between -999 and 999"
             />
             <button
               type="submit"
@@ -106,12 +107,13 @@ const ControlPanel = ({
             <input
               type="number"
               className={styles.input}
-              placeholder="Value to delete"
+              placeholder="Enter number (-999 to 999)"
               value={deleteValue}
               onChange={(e) => setDeleteValue(e.target.value)}
               disabled={isAnimating}
               min="-999"
               max="999"
+              title="Please enter a number between -999 and 999"
             />
             <button
               type="submit"
@@ -128,12 +130,13 @@ const ControlPanel = ({
             <input
               type="number"
               className={styles.input}
-              placeholder="Value to search"
+              placeholder="Enter number (-999 to 999)"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               disabled={isAnimating}
               min="-999"
               max="999"
+              title="Please enter a number between -999 and 999"
             />
             <button
               type="submit"
