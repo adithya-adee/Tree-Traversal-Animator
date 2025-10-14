@@ -37,6 +37,15 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.carried-by {
+  display: flex;
+  flex-direction: column;
+}
+
+.carried-by-name {
+  font-size: larger;
+}
+
 .app-header p {
   font-size: 1.1rem;
   color: #666;

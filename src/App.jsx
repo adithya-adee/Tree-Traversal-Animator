@@ -354,7 +354,14 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Tree Traversal Animator</h1>
+        <h1>SOFTWARE ENGINEERING (IT303) COURSE PROJECT TITLE: TREE TRAVERSAL VISUALIZER</h1>
+
+        <h2>Carried By:</h2>
+        <div className="carried-by">
+          <div className='carried-by-name'>Adithya A (231IT002)</div>
+          <div className='carried-by-name'>Anshu Kumar (231IT009)</div>
+          <div className='carried-by-name'>Naman Sinha (231IT041)</div>
+        </div>
       </header>
       
       <main className="app-main">
