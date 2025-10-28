@@ -49,6 +49,8 @@ Once the development server is running, open your web browser and navigate to th
 
 The application's interface is divided into three main sections:
 
+[User Interface Overview] (./asset/user-interface.png)
+
 ### Control Panel
 Located on the left side of the screen, the Control Panel houses all the input fields, buttons, and settings for interacting with the tree. Here you can select tree types, perform operations, trigger traversals, and adjust animation settings.
 
@@ -58,6 +60,7 @@ The central and largest area of the screen, the Visualization Canvas, is where t
 ### Status Bar
 At the bottom of the Visualization Canvas, the Status Bar provides real-time feedback. It displays messages about the current operation, animation status, and the values processed during traversals.
 
+
 ## 4. Core Functionality
 
 This section details how to use the various features of the application.
@@ -65,6 +68,8 @@ This section details how to use the various features of the application.
 ### Selecting Tree Type
 
 At the top of the Control Panel, you will find an option to select the type of tree you want to visualize.
+
+[Tree Type Selection] (./asset/tree-type-selection.png)
 
 *   Currently, only **Binary Search Tree (BST)** is fully supported.
 *   Future updates may include support for AVL Trees and Red-Black Trees.
@@ -77,6 +82,8 @@ To change the tree type:
 ### Node Operations
 
 You can perform fundamental operations on the tree through the Control Panel.
+
+[Node Operations] (./asset/node-operations.png)
 
 #### Inserting a Node
 To add a new node to the tree:
@@ -102,7 +109,9 @@ To locate a specific node in the tree:
 
 The application supports three common tree traversal algorithms. When a traversal is initiated, the Status Feed will display the order in which nodes are visited.
 
-*   **Note**: You cannot perform other operations while a traversal animation is active.
+*   **Note**: You cannot perform other operations while a traversal animation is active. You have to stop the current traversal , then you can perform other operations.
+
+[Tree Traversal Algorithms] (./asset/tree-traversal-algo.png)
 
 #### Inorder Traversal
 1.  Click the "Inorder" button in the "Traversals" section of the Control Panel.
@@ -119,6 +128,8 @@ The application supports three common tree traversal algorithms. When a traversa
 ### Animation Controls
 
 Manage the flow and history of your tree interactions.
+
+[Animation Control] (./asset/utility.png)
 
 #### Adjusting Animation Speed
 1.  Use the "Animation Speed" slider or input field in the Control Panel to change the duration of each animation step (in milliseconds).
@@ -141,6 +152,8 @@ The application keeps a history of your tree operations (insert, delete, clear).
 You can export the current state or an animated sequence of your tree visualization.
 
 *   **Note**: Export functions are disabled while an animation or traversal is in progress.
+
+[Export Functionalities] (./asset/export-functionality.png)
 
 ### Export as GIF
 1.  Click the "Export GIF" button, from the Dropdown Menu on the left-bottom corner.
