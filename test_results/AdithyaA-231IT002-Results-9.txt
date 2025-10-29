@@ -1,0 +1,19 @@
+Experimental Results: JSON Cases Parity
+Command: npx vitest run src/logic/cases.test.js
+Status: PASS
+
+----- STDOUT -----
+
+ RUN  v2.1.9 D:/NamanSinha-231IT041-Tree-Traversal-Animator/Naman-Sinha-231IT041-Tree-Traversal-Animator
+
+ ✓ src/logic/cases.test.js (20 tests) 7ms
+
+ Test Files  1 passed (1)
+      Tests  20 passed (20)
+   Start at  15:54:33
+   Duration  1.15s (transform 51ms, setup 93ms, collect 39ms, tests 7ms, environment 651ms, prepare 131ms)
+
+
+
+----- STDERR -----
+

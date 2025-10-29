@@ -1,0 +1,31 @@
+Experimental Results: GIF Export Integration
+Command: npx vitest run src/logic/gifExport.test.js
+Status: PASS
+
+----- STDOUT -----
+
+ RUN  v2.1.9 D:/NamanSinha-231IT041-Tree-Traversal-Animator/Naman-Sinha-231IT041-Tree-Traversal-Animator
+
+ ✓ src/logic/gifExport.test.js (4 tests) 17ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  15:54:22
+   Duration  1.17s (transform 51ms, setup 87ms, collect 41ms, tests 17ms, environment 673ms, prepare 152ms)
+
+
+
+----- STDERR -----
+stderr | src/logic/gifExport.test.js > gifExport integration with mocks > exportTreeAsPNG triggers download
+Not implemented: HTMLCanvasElement's toDataURL() method: without installing the canvas npm package
+
+stderr | src/logic/gifExport.test.js > gifExport integration with mocks > exportTreeAsJPEG triggers download
+Not implemented: HTMLCanvasElement's toDataURL() method: without installing the canvas npm package
+
+stderr | src/logic/gifExport.test.js
+Not implemented: navigation to another Document
+Not implemented: navigation to another Document
+Not implemented: navigation to another Document
+Not implemented: navigation to another Document
+
+

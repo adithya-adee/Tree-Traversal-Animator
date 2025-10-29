@@ -1,0 +1,48 @@
+Experimental Results: App E2E
+Command: npx vitest run src/App.int.test.jsx
+Status: PASS
+
+----- STDOUT -----
+
+ RUN  v2.1.9 D:/NamanSinha-231IT041-Tree-Traversal-Animator/Naman-Sinha-231IT041-Tree-Traversal-Animator
+
+stdout | src/App.int.test.jsx > App integration > inserts values and performs inorder traversal
+[INPUT  3:54:32 pm] Insert 5
+[BACKEND 3:54:32 pm] Insert produced animation steps { steps: 1 }
+
+ ✓ src/App.int.test.jsx (1 test) 350ms
+   ✓ App integration > inserts values and performs inorder traversal 349ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  15:54:30
+   Duration  1.96s (transform 179ms, setup 92ms, collect 410ms, tests 350ms, environment 709ms, prepare 193ms)
+
+
+
+----- STDERR -----
+stderr | src/App.int.test.jsx > App integration > inserts values and performs inorder traversal
+Warning: VisualizationCanvas: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.
+    at VisualizationCanvas (D:\NamanSinha-231IT041-Tree-Traversal-Animator\Naman-Sinha-231IT041-Tree-Traversal-Animator\src\components\VisualizationCanvas\VisualizationCanvas.jsx:18:3)
+    at main
+    at div
+    at App (D:\NamanSinha-231IT041-Tree-Traversal-Animator\Naman-Sinha-231IT041-Tree-Traversal-Animator\src\App.jsx:20:65)
+Warning: StatusBar: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.
+    at StatusBar (D:\NamanSinha-231IT041-Tree-Traversal-Animator\Naman-Sinha-231IT041-Tree-Traversal-Animator\src\components\StatusBar\StatusBar.jsx:10:3)
+    at div
+    at div
+    at div
+    at VisualizationCanvas (D:\NamanSinha-231IT041-Tree-Traversal-Animator\Naman-Sinha-231IT041-Tree-Traversal-Animator\src\components\VisualizationCanvas\VisualizationCanvas.jsx:18:3)
+    at main
+    at div
+    at App (D:\NamanSinha-231IT041-Tree-Traversal-Animator\Naman-Sinha-231IT041-Tree-Traversal-Animator\src\App.jsx:20:65)
+Warning: Node: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.
+    at Node (D:\NamanSinha-231IT041-Tree-Traversal-Animator\Naman-Sinha-231IT041-Tree-Traversal-Animator\src\components\Node\Node.jsx:10:3)
+    at div
+    at div
+    at VisualizationCanvas (D:\NamanSinha-231IT041-Tree-Traversal-Animator\Naman-Sinha-231IT041-Tree-Traversal-Animator\src\components\VisualizationCanvas\VisualizationCanvas.jsx:18:3)
+    at main
+    at div
+    at App (D:\NamanSinha-231IT041-Tree-Traversal-Animator\Naman-Sinha-231IT041-Tree-Traversal-Animator\src\App.jsx:20:65)
+
+

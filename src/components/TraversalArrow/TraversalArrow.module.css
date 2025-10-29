@@ -1,19 +1,35 @@
 /* TraversalArrow component styles */
 
-.traversalArrow { display: none; }
+.traversalArrow {
+  display: none;
+}
 
-.traversalArrow::before { content: ''; }
+.traversalArrow::before {
+  content: '';
+}
 
-@keyframes moveToNode {}
+@keyframes moveToNode {
+}
 
 /* Pulse animation for emphasis */
 .traversalArrow.pulse {
-  animation: moveToNode 1s ease-in-out, pulse 0.6s ease-in-out infinite;
+  animation:
+    moveToNode 1s ease-in-out,
+    pulse 0.6s ease-in-out infinite;
 }
 
-@keyframes pulse {}
+@keyframes pulse {
+}
 
 /* Responsive design */
-@media (max-width: 768px) { .traversalArrow { display: none; } }
+@media (max-width: 768px) {
+  .traversalArrow {
+    display: none;
+  }
+}
 
-@media (max-width: 480px) { .traversalArrow { display: none; } }
+@media (max-width: 480px) {
+  .traversalArrow {
+    display: none;
+  }
+}

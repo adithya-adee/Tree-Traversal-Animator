@@ -117,7 +117,12 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -136,7 +141,7 @@
 }
 
 .insertButton {
-  background: linear-gradient(135deg, #4CAF50, #45a049);
+  background: linear-gradient(135deg, #4caf50, #45a049);
   color: white;
 }
 
@@ -156,7 +161,7 @@
 }
 
 .searchButton {
-  background: linear-gradient(135deg, #2196F3, #1976D2);
+  background: linear-gradient(135deg, #2196f3, #1976d2);
   color: white;
 }
 
@@ -172,7 +177,7 @@
 }
 
 .traversalButton {
-  background: linear-gradient(135deg, #FF9800, #F57C00);
+  background: linear-gradient(135deg, #ff9800, #f57c00);
   color: white;
 }
 
@@ -188,7 +193,7 @@
 }
 
 .historyButton {
-  background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+  background: linear-gradient(135deg, #9c27b0, #7b1fa2);
   color: white;
 }
 
@@ -198,7 +203,7 @@
 }
 
 .clearButton {
-  background: linear-gradient(135deg, #607D8B, #455A64);
+  background: linear-gradient(135deg, #607d8b, #455a64);
   color: white;
 }
 
@@ -207,22 +212,75 @@
   box-shadow: 0 4px 12px rgba(96, 125, 139, 0.3);
 }
 
+.stopButton {
+  background: linear-gradient(135deg, #e53935, #c62828);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.stopButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(229, 57, 53, 0.4);
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+}
+
 .exportButtons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.imageExportGroup {
+  display: flex;
   gap: 0.5rem;
+  align-items: stretch;
+}
+
+.formatSelect {
+  padding: 0.75rem 1rem;
+  border: 2px solid #9c27b0;
+  border-radius: 8px;
+  background: white;
+  color: #333;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 100px;
+}
+
+.formatSelect:hover:not(:disabled) {
+  border-color: #7b1fa2;
+  box-shadow: 0 2px 8px rgba(156, 39, 176, 0.2);
+}
+
+.formatSelect:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.formatSelect:focus {
+  outline: none;
+  border-color: #7b1fa2;
+  box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.1);
 }
 
 .exportButton {
-  background: linear-gradient(135deg, #E91E63, #C2185B);
+  background: linear-gradient(135deg, #9c27b0, #7b1fa2);
   color: white;
-  font-size: 0.9rem;
-  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  flex: 1;
 }
 
 .exportButton:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+  box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+}
+
+.gifButton {
+  width: 100%;
 }
 
 .speedControl {
@@ -281,15 +339,22 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
   z-index: 10;
   border-radius: 16px;
+  padding: 2rem;
+}
+
+.animatingOverlay span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #667eea;
 }
 
 .animatingSpinner {
@@ -302,8 +367,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Responsive design */
@@ -313,26 +382,26 @@
     padding: 1.5rem;
     gap: 1.5rem;
   }
-  
+
   .form {
     flex-direction: column;
     gap: 0.75rem;
   }
-  
+
   .input {
     width: 100%;
   }
-  
+
   .button {
     width: 100%;
   }
-  
+
   .traversalButtons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
   }
-  
+
   .historyButtons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -345,16 +414,16 @@
     padding: 1rem;
     gap: 1rem;
   }
-  
+
   .sectionTitle {
     font-size: 1rem;
   }
-  
+
   .button {
     padding: 0.6rem 1rem;
     font-size: 0.9rem;
   }
-  
+
   .input {
     padding: 0.6rem 0.8rem;
     font-size: 0.9rem;

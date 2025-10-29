@@ -5,11 +5,20 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   color: #333;
   overflow-x: hidden;
+}
+
+.carried-by {
+  display: flex;
+  flex-direction: column;
+}
+
+.carried-by-name {
+  font-size:  larger;
 }
 
 .app {
@@ -35,15 +44,6 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 0.5rem;
-}
-
-.carried-by {
-  display: flex;
-  flex-direction: column;
-}
-
-.carried-by-name {
-  font-size: larger;
 }
 
 .app-header p {

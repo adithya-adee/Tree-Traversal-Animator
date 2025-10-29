@@ -1,9 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Node.module.css';
 
-const Node = ({ id, value, x, y, rbColor = 'red', highlightState = 'default', currentAnimationStep = null }) => {
+function Node({
+  id,
+  value,
+  x,
+  y,
+  rbColor = 'red',
+  highlightState = 'default',
+  currentAnimationStep = null,
+  scale = 1.0,
+}) {
   const getActualHighlightState = () => {
-    if (currentAnimationStep && currentAnimationStep.type === 'highlight-node' && currentAnimationStep.nodeId === id) {
+    if (
+      currentAnimationStep
+      && currentAnimationStep.type === 'highlight-node'
+      && currentAnimationStep.nodeId === id
+    ) {
       return currentAnimationStep.state || 'current';
     }
     return highlightState;
@@ -13,37 +27,37 @@ const Node = ({ id, value, x, y, rbColor = 'red', highlightState = 'default', cu
 
   const getNodeColor = () => {
     if (actualHighlightState === 'found') {
-      return '#4CAF50'; 
+      return '#4CAF50';
     }
     if (actualHighlightState === 'current') {
-      return '#2196F3'; 
+      return '#2196F3';
     }
     if (actualHighlightState === 'visited') {
-      return '#FF9800'; 
+      return '#FF9800';
     }
     if (actualHighlightState === 'pivot') {
-      return '#9C27B0'; 
+      return '#9C27B0';
     }
     if (actualHighlightState === 'path') {
       return '#607D8B';
     }
     if (actualHighlightState === 'searching') {
-      return '#FF5722'; 
+      return '#FF5722';
     }
     if (actualHighlightState === 'inserting') {
-      return '#4CAF50'; 
+      return '#4CAF50';
     }
     if (actualHighlightState === 'deleting') {
-      return '#F44336'; 
+      return '#F44336';
     }
-    
+
     if (rbColor === 'black') {
       return '#333';
     }
     if (rbColor === 'red') {
       return '#F44336';
     }
-    
+
     return '#667eea';
   };
 
@@ -72,7 +86,7 @@ const Node = ({ id, value, x, y, rbColor = 'red', highlightState = 'default', cu
     if (actualHighlightState === 'deleting') {
       return '#C62828';
     }
-    
+
     return '#667eea';
   };
 
@@ -104,6 +118,8 @@ const Node = ({ id, value, x, y, rbColor = 'red', highlightState = 'default', cu
     top: `${y}px`,
     backgroundColor: getNodeColor(),
     borderColor: getBorderColor(),
+    '--node-scale': scale,
+    transform: 'translate(-50%, -50%)',
   };
 
   return (
@@ -115,10 +131,32 @@ const Node = ({ id, value, x, y, rbColor = 'red', highlightState = 'default', cu
     >
       <span className={styles.nodeValue}>{value}</span>
       {rbColor && (
-        <div className={`${styles.colorIndicator} ${styles[rbColor]}`}></div>
+        <div className={`${styles.colorIndicator} ${styles[rbColor]}`} />
       )}
     </div>
   );
-};
+}
 
 export default Node;
+
+Node.propTypes = {
+  id: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
+  rbColor: PropTypes.string,
+  highlightState: PropTypes.string,
+  currentAnimationStep: PropTypes.shape({
+    type: PropTypes.string,
+    nodeId: PropTypes.string,
+    state: PropTypes.string,
+  }),
+  scale: PropTypes.number,
+};
+
+Node.defaultProps = {
+  rbColor: 'red',
+  highlightState: 'default',
+  currentAnimationStep: null,
+  scale: 1.0,
+};

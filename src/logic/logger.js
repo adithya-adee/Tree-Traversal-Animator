@@ -1,4 +1,4 @@
-
+/* eslint-disable no-console */
 const time = () => new Date().toLocaleTimeString();
 
 export function logInput(message, details) {
@@ -24,5 +24,3 @@ export function logInfo(message, details) {
     console.log(`[INFO   ${time()}] ${message}`);
   }
 }
-
-

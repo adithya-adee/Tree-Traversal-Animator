@@ -1,136 +1,91 @@
-import React, { useMemo, useRef, useEffect, useState } from 'react';
-import Node from '../Node/Node.jsx';
-import Edge from '../Edge/Edge.jsx';
-import StatusBar from '../StatusBar/StatusBar.jsx';
-import TraversalArrow from '../TraversalArrow/TraversalArrow.jsx';
+import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
+import Node from '../Node/Node';
+import Edge from '../Edge/Edge';
+import StatusBar from '../StatusBar/StatusBar';
+import TraversalArrow from '../TraversalArrow/TraversalArrow';
 import styles from './VisualizationCanvas.module.css';
 
-const VisualizationCanvas = ({ 
-  treeData, 
-  captureRef, 
-  animationQueue, 
-  currentAnimationIndex,
+function VisualizationCanvas({
+  treeData,
+  captureRef,
   currentAnimationStep,
   currentValue,
   statusMessage,
   statusFeed = [],
   statusTitle = '',
-  onClearStatus = null
-}) => {
+  onClearStatus = null,
+}) {
   const containerRef = useRef(null);
-  const [containerWidth, setContainerWidth] = useState(0);
-  const [containerHeight, setContainerHeight] = useState(0);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const el = containerRef.current;
-    const updateSize = () => {
-      setContainerWidth(el.clientWidth);
-      setContainerHeight(el.clientHeight);
-    };
-    updateSize();
-    const ro = new ResizeObserver(updateSize);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  const canvasDimensions = useMemo(() => {
-    if (!treeData.nodes || treeData.nodes.length === 0) {
-      return { width: 800, height: 600 };
-    }
-
-    const nodes = treeData.nodes;
-    const padding = 100;
-    
-    const minX = Math.min(...nodes.map(n => n.x)) - padding;
-    const maxX = Math.max(...nodes.map(n => n.x)) + padding;
-    const minY = Math.min(...nodes.map(n => n.y)) - padding;
-    const maxY = Math.max(...nodes.map(n => n.y)) + padding;
-    
-    return {
-      width: Math.max(800, maxX - minX),
-      height: Math.max(600, maxY - minY),
-      minX,
-      minY
-    };
-  }, [treeData]);
-
-  const rootCenterOffsetX = useMemo(() => {
-    if (!treeData.nodes || treeData.nodes.length === 0 || containerWidth === 0) return 0;
-    const rootNode = treeData.nodes[0]; 
-    const rootXWithinCanvas = rootNode.x - (canvasDimensions.minX || 0);
-    const desiredCenter = containerWidth / 2;
-    return desiredCenter - rootXWithinCanvas;
-  }, [treeData, canvasDimensions, containerWidth]);
-
 
   const renderNodes = () => {
     if (!treeData.nodes) return null;
 
-    return treeData.nodes.map(node => {
-      return (
-        <Node
-          key={node.id}
-          id={node.id}
-          value={node.value}
-          x={(node.x - canvasDimensions.minX) + rootCenterOffsetX}
-          y={node.y - canvasDimensions.minY}
-          rbColor={node.color}
-          highlightState="default"
-          currentAnimationStep={currentAnimationStep}
-        />
-      );
-    });
+    return treeData.nodes.map((node) => (
+      <Node
+        key={node.id}
+        id={node.id}
+        value={node.value}
+        x={node.x}
+        y={node.y}
+        rbColor={node.color}
+        highlightState="default"
+        currentAnimationStep={currentAnimationStep}
+        scale={node.scale || 1.0}
+      />
+    ));
   };
 
   const renderEdges = () => {
     if (!treeData.edges) return null;
 
     return treeData.edges.map((edge, index) => {
-      const fromNode = treeData.nodes.find(n => n.id === edge.from);
-      const toNode = treeData.nodes.find(n => n.id === edge.to);
-      
+      const fromNode = treeData.nodes.find((n) => n.id === edge.from);
+      const toNode = treeData.nodes.find((n) => n.id === edge.to);
+
       if (!fromNode || !toNode) return null;
 
       return (
         <Edge
-          key={`${edge.from}-${edge.to}-${index}`}
-          fromX={(fromNode.x - canvasDimensions.minX) + rootCenterOffsetX}
-          fromY={fromNode.y - canvasDimensions.minY}
-          toX={(toNode.x - canvasDimensions.minX) + rootCenterOffsetX}
-          toY={toNode.y - canvasDimensions.minY}
+          key={`${edge.from}-${edge.to}-${String(index)}`}
+          fromX={fromNode.x}
+          fromY={fromNode.y}
+          toX={toNode.x}
+          toY={toNode.y}
           type={edge.type}
+          scale={fromNode.scale || 1.0}
         />
       );
     });
   };
 
   const renderTraversalArrow = () => {
-    if (!currentAnimationStep || currentAnimationStep.type !== 'highlight-node') {
+    if (
+      !currentAnimationStep
+      || currentAnimationStep.type !== 'highlight-node'
+    ) {
       return null;
     }
 
-    const currentNode = treeData.nodes.find(node => node.id === currentAnimationStep.nodeId);
+    const currentNode = treeData.nodes.find(
+      (node) => node.id === currentAnimationStep.nodeId,
+    );
     if (!currentNode) return null;
 
     return (
       <TraversalArrow
-        x={(currentNode.x - canvasDimensions.minX) + rootCenterOffsetX}
-        y={currentNode.y - canvasDimensions.minY - 60}
-        visible={true}
+        x={currentNode.x}
+        y={currentNode.y - 60}
+        visible
       />
     );
   };
 
   return (
     <div className={styles.canvasContainer} ref={containerRef}>
-      <div 
+      <div
         ref={captureRef}
         className={styles.canvas}
-        style={{
-          width: '100%',
-          height: '100%'
-        }}
       >
         {treeData.nodes && treeData.nodes.length > 0 ? (
           <>
@@ -154,11 +109,60 @@ const VisualizationCanvas = ({
           </div>
         )}
         <div className={styles.statusDock}>
-          <StatusBar message={statusMessage} messages={statusFeed} title={statusTitle} onClear={onClearStatus} size="large" />
+          <StatusBar
+            message={statusMessage}
+            messages={statusFeed}
+            title={statusTitle}
+            onClear={onClearStatus}
+            size="large"
+          />
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default VisualizationCanvas;
+
+VisualizationCanvas.propTypes = {
+  treeData: PropTypes.shape({
+    nodes: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        value: PropTypes.number.isRequired,
+        x: PropTypes.number.isRequired,
+        y: PropTypes.number.isRequired,
+        color: PropTypes.string,
+      }),
+    ),
+    edges: PropTypes.arrayOf(
+      PropTypes.shape({
+        from: PropTypes.string.isRequired,
+        to: PropTypes.string.isRequired,
+        type: PropTypes.string,
+      }),
+    ),
+  }).isRequired,
+  captureRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]).isRequired,
+  currentAnimationStep: PropTypes.shape({
+    type: PropTypes.string,
+    nodeId: PropTypes.string,
+    state: PropTypes.string,
+  }),
+  currentValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  statusMessage: PropTypes.string.isRequired,
+  statusFeed: PropTypes.arrayOf(PropTypes.string),
+  statusTitle: PropTypes.string,
+  onClearStatus: PropTypes.oneOfType([PropTypes.func, PropTypes.oneOf([null])]),
+};
+
+VisualizationCanvas.defaultProps = {
+  currentAnimationStep: null,
+  currentValue: null,
+  statusFeed: [],
+  statusTitle: '',
+  onClearStatus: null,
+};

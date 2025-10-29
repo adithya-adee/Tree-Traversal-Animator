@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './TraversalArrow.module.css';
 
-const TraversalArrow = ({ x, y, visible }) => {
+function TraversalArrow({ x, y, visible }) {
   if (!visible) return null;
 
   return (
@@ -10,12 +11,18 @@ const TraversalArrow = ({ x, y, visible }) => {
       style={{
         left: `${x}px`,
         top: `${y}px`,
-        transform: 'translate(-50%, -50%)'
+        transform: 'translate(-50%, -50%)',
       }}
     >
       →
     </div>
   );
-};
+}
 
 export default TraversalArrow;
+
+TraversalArrow.propTypes = {
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
+  visible: PropTypes.bool.isRequired,
+};

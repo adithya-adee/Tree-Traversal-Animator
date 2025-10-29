@@ -2,16 +2,16 @@
 
 .node {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: calc(60px * var(--node-scale, 1));
+  height: calc(60px * var(--node-scale, 1));
   border-radius: 50%;
-  border: 3px solid;
+  border: calc(3px * var(--node-scale, 1)) solid;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 calc(4px * var(--node-scale, 1)) calc(12px * var(--node-scale, 1)) rgba(0, 0, 0, 0.15);
   z-index: 10;
   transform: translate(-50%, -50%);
   user-select: none;
@@ -25,7 +25,12 @@
   right: -3px;
   bottom: -3px;
   border-radius: 50%;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -35,15 +40,17 @@
 }
 
 .nodeValue {
-  font-size: 1.1rem;
+  font-size: calc(1.1rem * var(--node-scale, 1));
   font-weight: 700;
   color: white;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 calc(1px * var(--node-scale, 1)) calc(3px * var(--node-scale, 1)) rgba(0, 0, 0, 0.3);
   z-index: 1;
   position: relative;
 }
 
-.colorIndicator { display: none; }
+.colorIndicator {
+  display: none;
+}
 
 .colorIndicator.red {
   background-color: #044763;
@@ -100,7 +107,6 @@
 
 /* Hover effects */
 .node:hover {
-  transform: translate(-50%, -50%) scale(1.1);
   z-index: 20;
 }
 
@@ -120,11 +126,11 @@
     width: 50px;
     height: 50px;
   }
-  
+
   .nodeValue {
     font-size: 1rem;
   }
-  
+
   .colorIndicator {
     width: 14px;
     height: 14px;
@@ -138,11 +144,11 @@
     width: 45px;
     height: 45px;
   }
-  
+
   .nodeValue {
     font-size: 0.9rem;
   }
-  
+
   .colorIndicator {
     width: 12px;
     height: 12px;
@@ -151,64 +157,71 @@
   }
 }
 
-/* Animation keyframes */
+/* Animation keyframes - now respect dynamic scale via CSS variable */
 @keyframes pulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(var(--node-scale, 1));
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: translate(-50%, -50%) scale(calc(var(--node-scale, 1) * 1.1));
   }
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translate(-50%, -50%) translateY(0);
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translate(-50%, -50%) scale(var(--node-scale, 1)) translateY(0);
   }
   40% {
-    transform: translate(-50%, -50%) translateY(-10px);
+    transform: translate(-50%, -50%) scale(var(--node-scale, 1)) translateY(-10px);
   }
   60% {
-    transform: translate(-50%, -50%) translateY(-5px);
+    transform: translate(-50%, -50%) scale(var(--node-scale, 1)) translateY(-5px);
   }
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
+    transform: translate(-50%, -50%) scale(calc(var(--node-scale, 1) * 0.5));
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(var(--node-scale, 1));
   }
 }
 
 @keyframes fadeOut {
   from {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(var(--node-scale, 1));
   }
   to {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
+    transform: translate(-50%, -50%) scale(calc(var(--node-scale, 1) * 0.5));
   }
 }
 
 @keyframes shake {
-  0%, 100% {
-    transform: translate(-50%, -50%) translateX(0);
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(var(--node-scale, 1)) translateX(0);
   }
   25% {
-    transform: translate(-50%, -50%) translateX(-5px);
+    transform: translate(-50%, -50%) scale(var(--node-scale, 1)) translateX(-5px);
   }
   75% {
-    transform: translate(-50%, -50%) translateX(5px);
+    transform: translate(-50%, -50%) scale(var(--node-scale, 1)) translateX(5px);
   }
 }
 
 @keyframes glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 15px rgba(96, 125, 139, 0.6);
   }
   50% {
@@ -219,11 +232,11 @@
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -50%) translateY(-20px);
+    transform: translate(-50%, -50%) scale(var(--node-scale, 1)) translateY(-20px);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) translateY(0);
+    transform: translate(-50%, -50%) scale(var(--node-scale, 1)) translateY(0);
   }
 }
 
@@ -233,12 +246,12 @@
     box-shadow: none;
     border: 2px solid #333;
   }
-  
+
   .nodeValue {
     color: #333;
     text-shadow: none;
   }
-  
+
   .colorIndicator {
     border-color: #333;
   }

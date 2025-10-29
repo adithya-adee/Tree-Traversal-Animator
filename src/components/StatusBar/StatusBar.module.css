@@ -44,13 +44,14 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4CAF50, #45a049);
+  background: linear-gradient(135deg, #4caf50, #45a049);
   box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
   animation: statusPulse 2s ease-in-out infinite;
 }
 
 @keyframes statusPulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
   }
@@ -122,22 +123,22 @@
 
 /* Status states */
 .statusBar.success .statusDot {
-  background: linear-gradient(135deg, #4CAF50, #45a049);
+  background: linear-gradient(135deg, #4caf50, #45a049);
   box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
 }
 
 .statusBar.warning .statusDot {
-  background: linear-gradient(135deg, #FF9800, #F57C00);
+  background: linear-gradient(135deg, #ff9800, #f57c00);
   box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
 }
 
 .statusBar.error .statusDot {
-  background: linear-gradient(135deg, #F44336, #d32f2f);
+  background: linear-gradient(135deg, #f44336, #d32f2f);
   box-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
 }
 
 .statusBar.info .statusDot {
-  background: linear-gradient(135deg, #2196F3, #1976D2);
+  background: linear-gradient(135deg, #2196f3, #1976d2);
   box-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
 }
 
@@ -146,21 +147,21 @@
   .statusBar {
     padding: 0.75rem 1rem;
   }
-  
+
   .statusContent {
     gap: 0.75rem;
   }
-  
+
   .statusIcon {
     width: 18px;
     height: 18px;
   }
-  
+
   .statusDot {
     width: 10px;
     height: 10px;
   }
-  
+
   .statusMessage {
     font-size: 0.9rem;
   }
@@ -170,21 +171,21 @@
   .statusBar {
     padding: 0.5rem 0.75rem;
   }
-  
+
   .statusContent {
     gap: 0.5rem;
   }
-  
+
   .statusIcon {
     width: 16px;
     height: 16px;
   }
-  
+
   .statusDot {
     width: 8px;
     height: 8px;
   }
-  
+
   .statusMessage {
     font-size: 0.8rem;
   }
@@ -197,17 +198,17 @@
     box-shadow: none;
     border: 1px solid #ccc;
   }
-  
+
   .statusBar::before {
     background: #333;
   }
-  
+
   .statusDot {
     background: #333;
     box-shadow: none;
     animation: none;
   }
-  
+
   .statusMessage {
     color: #333;
   }
